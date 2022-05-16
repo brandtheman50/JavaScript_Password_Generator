@@ -3,6 +3,7 @@ const lowercase_char ="abcdefghijklmnopqrstuvwxyz";
 const uppercase_char ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const symbol_char ="!@#$%&?";
 const ambiguous_char ="^*(){}[]/\<>.,;:'\"";
+
 function generate() {
     const number = document.getElementById("number").checked;
     const uppercase = document.getElementById("uppercase").checked;
@@ -10,7 +11,7 @@ function generate() {
     const lowercase = document.getElementById("lowercase").checked;
     const amb_char = document.getElementById("amb_char").checked;
     const length = document.getElementById("length").value;
-    var checkedElements = [number, uppercase, symbol, lowercase, amb_char];
+    var checkedElements = [number, uppercase, lowercase, symbol, amb_char];
     if (length > 127 || length < 8) {
         window.alert("Your password length must be a minimum of 8 and a maximum of 127 characters.")
         return;
@@ -59,12 +60,10 @@ function randomPassword(checkedConditions, checkedChars) {
 }
 
 function copyText() {
-    var text = document.getElementById("new_password");
+    const copyBtn = document.getElementById('copy');
+    const text = document.getElementById("new_password");
 
     text.select();
-    text.setSelectionRange(0, 99999);
-
-    navigator.clipboard.writeText(text.value);
-
-    alert("Copied the text: " + text.value);
+    document.execCommand('copy');
+    
 }
